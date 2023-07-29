@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
 
-public class BulletSpawner : MonoBehaviour
+public class BulletSpawner : NetworkBehaviour
 {
     [SerializeField] private Bullet _bulletPrefab;
     [SerializeField] private Transform _shootPoint;
     [SerializeField] private float _launchingForce;
 
-    public void SpawnBullet()
+    [ServerRpc]
+    public void SpawnBulletServerRpc()
     {
         Bullet newBullet = Instantiate(_bulletPrefab, _shootPoint.position, _shootPoint.rotation);
         newBullet.GetComponent<NetworkObject>().Spawn();
