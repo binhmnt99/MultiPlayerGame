@@ -9,7 +9,7 @@ public class BulletSpawner : MonoBehaviour
     [SerializeField] private Transform _shootPoint;
     [SerializeField] private float _launchingForce;
 
-    public void SpawBullet()
+    public void SpawnBullet()
     {
         Bullet newBullet = Instantiate(_bulletPrefab, _shootPoint.position, _shootPoint.rotation);
         newBullet.GetComponent<NetworkObject>().Spawn();
